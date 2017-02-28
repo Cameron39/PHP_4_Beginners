@@ -2,16 +2,27 @@
 
 if(isset($_POST['submit'])) {
     //echo 'got it';
+    
     $username = $_POST['username'];
     $password = $_POST['password'];
     
-    echo 'Username: ' . $username . '<br>';
-    echo 'Password: ' . $password . '<br>';
+    if($username && $password){
+        echo 'Username: ' . $username . '<br>';
+        echo 'Password: ' . $password . '<br>';
+    } else {
+        echo 'no data<br>';
+    }
+    
+    $connection = mysqli_connect('localhost', 'root', '', 'loginapp'); //machine, login user, password, database
+    
+    if($connection){
+        echo 'connection established<br>';
+    } else {
+        echo 'connection DENIED<br>';
+    }
 }
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
