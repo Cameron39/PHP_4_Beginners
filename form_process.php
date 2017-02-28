@@ -1,7 +1,12 @@
-<?php
-    //$_POST //will pick up user data input from forms, as is defined
-            //is a super global variable, as an array
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Processing</title>
+</head>
+<body>
+   
+   <?php
     $validuser = array('Mike', 'Chris', 'Cam', 'Bill', 'Matt', 'Shaq');
         
     if(isset($_POST['submit'])) { //must match name from submit (which is submit) 
@@ -25,27 +30,8 @@
         echo 'password: ' . $psw . '<br>';
     }
     
-?>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-<body>
-   
-   
     
-    <form action="form_process.php" method="post"> <!-- page that collects the data-->
-        <input type="text" name='username' placeholder="Enter user Name">
-        <input type="password" name='password' placeholder="Enter Password">
-        <br>
-        <input type="submit" name="submit">
-    </form>
-    
-    
+    ?>
     
 </body>
 </html>
