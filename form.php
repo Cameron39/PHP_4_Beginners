@@ -3,9 +3,11 @@
             //is a super global variable, as an array
         
     if(isset($_POST['submit'])) { //must match name from submit (which is submit) 
-        echo 'we got something!';
-        //echo 'username' . $_POST['name'] . '<br>';
-        //echo 'password' . $_POST[1] . '<br>';
+        echo 'we got something!<br>';
+        $user = $_POST['username'];
+        $psw = $_POST['password'];
+        echo 'username: ' . $user . '<br>';
+        echo 'password: ' . $psw . '<br>';
     }
     
 ?>
@@ -22,8 +24,8 @@
    
     
     <form action="form.php" method="post"> <!-- page that collects the data-->
-        <input type="text" placeholder="Enter user Name" name='name'>
-        <input type="password" placeholder="Enter Password" name='password'>
+        <input type="text" name='username' placeholder="Enter user Name">
+        <input type="password" name='password' placeholder="Enter Password">
         <br>
         <input type="submit" name="submit">
     </form>
