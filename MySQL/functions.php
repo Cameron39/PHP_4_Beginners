@@ -17,4 +17,17 @@ function showAllData() {
     }
 }
 
+function updateTable() {
+    global $connection;
+    
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $id = $_POST['id'];
+    
+    $query = "UPDATE USERS SET USERNAME='$username', PASSWORD='$password' WHERE ID=$id";
+    
+    $result = mysqli_query($connection, $query);
+    if(!$result) {die("QUERY FAILED" . mysqli_error($connection));}
+}
+
 ?>
