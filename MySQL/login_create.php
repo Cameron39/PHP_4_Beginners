@@ -1,35 +1,8 @@
-<?php include "db.php"
+<?php include "db.php"; include "functions.php";
 
 if(isset($_POST['submit'])) {
     //echo 'got it';
-    
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    /*
-    if($username && $password){
-        echo 'Username: ' . $username . '<br>';
-        echo 'Password: ' . $password . '<br>';
-    } else {
-        echo 'no data<br>';
-    }
-    */
-    $connection = mysqli_connect('localhost', 'root', '', 'loginapp'); //machine, login user, password, database
-    
-    
-    
-    if($connection){
-        echo 'connection established<br>';
-    } else {
-        die('connection DENIED<br>');
-    }
-    
-    $query = "INSERT INTO USERS(USERNAME, PASSWORD) ";
-    $query .= "VALUES ('$username', '$password')"; //quotes needed to show they are strings, good idea to use double quotes!
-    
-    $result = mysqli_query($connection, $query); //use the connection to execute the query
-    if(!$result){
-        die('Insert Query Failure' . mysqli_error());
-    }
+    createRow();
 }
 
 ?>
@@ -44,6 +17,7 @@ if(isset($_POST['submit'])) {
 <body>
   <div class="container">
       <div class="col-sm-6">
+         <h1 class="text-center">Create</h1>
           <form action="login_create.php" method="post">
               <div class="form-group">
                  <label for="username">Username</label>
@@ -53,7 +27,7 @@ if(isset($_POST['submit'])) {
                  <label for="password">Password</label>
                   <input type="password" name="password" class="form-control">
               </div>
-              <input class="btn btn-primary" type="submit" name="submit" value="Submit">
+              <input class="btn btn-primary" type="submit" name="submit" value="Create">
           </form>
       </div>
   </div>

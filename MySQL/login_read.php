@@ -2,11 +2,11 @@
 
     $connection = mysqli_connect('localhost', 'root', '', 'loginapp'); //machine, login user, password, database
 
-    if($connection){
+    /*if($connection){
         echo 'connection established<br>';
     } else {
         die('connection DENIED<br>');
-    }
+    }*/
 
     $query = "SELECT * FROM users ";
 

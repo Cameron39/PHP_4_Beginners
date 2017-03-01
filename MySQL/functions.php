@@ -17,6 +17,30 @@ function showAllData() {
     }
 }
 
+function createRow() {
+    global $connection;
+    
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $connection = mysqli_connect('localhost', 'root', '', 'loginapp'); //machine, login user, password, database
+    
+    /*if($connection){
+        echo 'connection established<br>';
+    } else {
+        die('connection DENIED<br>');
+    }*/
+    
+    $query = "INSERT INTO USERS(USERNAME, PASSWORD) ";
+    $query .= "VALUES ('$username', '$password')"; //quotes needed to show they are strings, good idea to use double quotes!
+    
+    $result = mysqli_query($connection, $query); //use the connection to execute the query
+    if(!$result){
+        die('Insert Query Failure' . mysqli_error());
+    } else {
+        echo 'Record Created<br>';
+    }
+}
+
 function updateTable() {
     global $connection;
     
@@ -28,6 +52,7 @@ function updateTable() {
     
     $result = mysqli_query($connection, $query);
     if(!$result) {die("QUERY FAILED" . mysqli_error($connection));}
+    else {echo 'Record Updated<br>';}
 }
 
 function deleteRow(){
@@ -38,6 +63,7 @@ function deleteRow(){
     $query = "DELETE FROM USERS WHERE ID=$id";
     $result = mysqli_query($connection, $query);
     if(!$result) {die("QUERY FAILED" . mysqli_error($connection));}
+    else {echo 'Record Updated<br>';}
     
 }
 
