@@ -30,4 +30,15 @@ function updateTable() {
     if(!$result) {die("QUERY FAILED" . mysqli_error($connection));}
 }
 
+function deleteRow(){
+    global $connection;
+    
+    $id = $_POST['id'];
+    
+    $query = "DELETE FROM USERS WHERE ID=$id";
+    $result = mysqli_query($connection, $query);
+    if(!$result) {die("QUERY FAILED" . mysqli_error($connection));}
+    
+}
+
 ?>

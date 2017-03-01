@@ -1,4 +1,4 @@
-<?php
+<?php include "db.php"
 
 if(isset($_POST['submit'])) {
     //echo 'got it';
@@ -14,6 +14,8 @@ if(isset($_POST['submit'])) {
     }
     */
     $connection = mysqli_connect('localhost', 'root', '', 'loginapp'); //machine, login user, password, database
+    
+    
     
     if($connection){
         echo 'connection established<br>';
