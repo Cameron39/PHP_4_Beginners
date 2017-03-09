@@ -15,12 +15,15 @@ if(class_exists("Car")) {
 } else {
     echo "DNE";
 }
-*/
+
 if(method_exists("Car", "MoveWheels")) {
     echo "Exists";
 } else {
     echo "DNE";
 }
+*/
 
+$focus = new Car();
 
+$focus->MoveWheels();
 ?>
