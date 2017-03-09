@@ -1,4 +1,6 @@
-<?php include "db.php"; include "functions.php";
+<?php include "functions.php";?>
+<?php include "Includes/header.php";?>
+<?php
 
 if(isset($_POST['submit'])) {
     //echo 'got it';
@@ -7,14 +9,7 @@ if(isset($_POST['submit'])) {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>MySQL Login with bootstrap</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-</head>
-<body>
+
   <div class="container">
       <div class="col-sm-6">
          <h1 class="text-center">Create</h1>
@@ -31,5 +26,5 @@ if(isset($_POST['submit'])) {
           </form>
       </div>
   </div>
-</body>
-</html>
+
+<?php include "Includes/footer.php"?>

@@ -1,21 +1,12 @@
 <!-- Update the database based off an ID number (from a query) 
 -->
-<?php include "db.php"; include "functions.php";
-if(isset($_POST['submit'])) {
-deleteRow();    
-
-}
-
+<?php include "functions.php";?>
+<?php
+    if(isset($_POST['submit'])) {
+        deleteRow();    
+    }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>MySQL Login with bootstrap</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-</head>
-<body>
+<?php include "Includes/header.php"?>
   <div class="container">
       <div class="col-sm-6">
          <h1 class="text-center">Delete</h1>
@@ -39,5 +30,4 @@ deleteRow();
           </form>
       </div>
   </div>
-</body>
-</html>
+<?php include "Includes/footer.php"?>

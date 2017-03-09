@@ -17,6 +17,16 @@ function showAllData() {
     }
 }
 
+function readRows() {
+    global $connection;
+    $query = "SELECT * FROM users ";
+    $result = mysqli_query($connection, $query);
+    
+    while($row = mysqli_fetch_assoc($result)){ //or mysqli_fetch_row
+        print_r($row);   
+    }
+}
+
 function createRow() {
     global $connection;
     
