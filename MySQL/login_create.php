@@ -6,9 +6,7 @@ if(isset($_POST['submit'])) {
     //echo 'got it';
     createRow();
 }
-
 ?>
-
 
   <div class="container">
       <div class="col-sm-6">

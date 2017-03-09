@@ -37,6 +37,11 @@ function createRow() {
     $username = mysqli_real_escape_string($connection, $username);
     $password = mysqli_real_escape_string($connection, $password);
     
+    $hashFormat = "$2y$14$"; //the part after $2y$14 tells how many times to hash
+    $salt = "G8FL7310hfP6cHh4b7lElp"; //must be 22 characters
+    $hash_and_salt = $hashFormat . $salt;
+    $password = crypt($password, $hash_and_salt);
+    
     $connection = mysqli_connect('localhost', 'root', '', 'loginapp'); //machine, login user, password, database
     
     /*if($connection){
