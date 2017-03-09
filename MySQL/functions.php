@@ -32,6 +32,11 @@ function createRow() {
     
     $username = $_POST['username'];
     $password = $_POST['password'];
+    
+    //Data sanitation
+    $username = mysqli_real_escape_string($connection, $username);
+    $password = mysqli_real_escape_string($connection, $password);
+    
     $connection = mysqli_connect('localhost', 'root', '', 'loginapp'); //machine, login user, password, database
     
     /*if($connection){
