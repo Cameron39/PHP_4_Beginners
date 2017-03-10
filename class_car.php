@@ -6,6 +6,7 @@ class Car {
     private $engine = 1;    //invisible outside the class
     var $doors = 4;
     public $mph = 0;
+    static $lights = "off";
     
     function __construct(){
         $this->wheels = 4;
@@ -17,6 +18,10 @@ class Car {
     
     function upMph(){
         $this->mph = 10;
+    }
+    
+    function setLightsOn(){
+        Car::$lights = "on";
     }
     
 }
@@ -43,4 +48,7 @@ echo "<br>wheels: " . $focus->wheels;
 echo "<br> mph: " . $focus->mph;
 $focus->upMph();
 echo "<br> mph: " . $focus->mph;
+echo "<br> lights: " . Car::$lights;
+Car::setLightsOn();
+echo "<br> lights: " . Car::$lights;
 ?>
