@@ -1,5 +1,5 @@
 <?php
-echo $_POST["name"];
+echo $_POST["name"]; //first time will error out as no value
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,9 +12,6 @@ echo $_POST["name"];
 <form action="post.php" method="post">
     <input type="text" name='name'>
     <input type="submit">
-    
-    
 </form>
-    
 </body>
 </html>

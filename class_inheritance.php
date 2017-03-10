@@ -30,6 +30,7 @@ echo "<br>wheels: " . $focus->wheels;
 echo "<br> mph: " . $focus->mph;
 $focus->upMph();
 echo "<br> mph: " . $focus->mph;
+
 $jet->wheels = 2;
 echo "<br> jet wheels:" . $jet->wheels;
 ?>
