@@ -1,11 +1,11 @@
 <?php
 
 class Car {
-    var $wheels;
-    var $hood = 1;
-    var $engine = 1;
+    var $wheels;            //var is public
+    protected $hood = 1;    //must use method to access/modify
+    private $engine = 1;    //invisible outside the class
     var $doors = 4;
-    var $mph = 0;
+    public $mph = 0;
     
     function __construct(){
         $this->wheels = 4;
