@@ -9,8 +9,13 @@
    <?php
     $file = "example.txt";
     
-    $handle = fopen($file, 'w'); //w for write
+    if($handle = fopen($file, 'w')) { //w for write
+        echo 'file opened';
+        fwrite($handle, 'Woot writing the file!');
     
+    } else {
+        echo 'could not open file';
+    }
     fclose($handle);
     ?>
     
