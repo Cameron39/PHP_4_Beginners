@@ -28,7 +28,8 @@
     }
     fclose($handle);
     
-    
+    $file2Delete = "deleteme.txt";
+    unlink($file2Delete);
     
     ?>
     
