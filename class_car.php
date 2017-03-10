@@ -1,10 +1,18 @@
 <?php
 
 class Car {
+    var $wheels = 4;
+    var $hoo = 1;
+    var $engine = 1;
+    var $doors = 4;
+    var $mph = 0;
     
     function MoveWheels() {
-        echo "Wheels Moved";
-        
+        echo "Wheels Moved";  
+    }
+    
+    function upMph(){
+        $this->mph = 10;
     }
     
 }
@@ -26,4 +34,9 @@ if(method_exists("Car", "MoveWheels")) {
 $focus = new Car();
 
 $focus->MoveWheels();
+$focus->wheels = 8;
+echo "<br>wheels: " . $focus->wheels;
+echo "<br> mph: " . $focus->mph;
+$focus->upMph();
+echo "<br> mph: " . $focus->mph;
 ?>
