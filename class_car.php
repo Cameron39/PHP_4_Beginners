@@ -1,11 +1,15 @@
 <?php
 
 class Car {
-    var $wheels = 4;
-    var $hoo = 1;
+    var $wheels;
+    var $hood = 1;
     var $engine = 1;
     var $doors = 4;
     var $mph = 0;
+    
+    function __construct(){
+        $this->wheels = 4;
+    }
     
     function MoveWheels() {
         echo "Wheels Moved";  
