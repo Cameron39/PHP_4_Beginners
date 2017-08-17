@@ -5,15 +5,18 @@
 //Alternative approach:
 //  $html = str_get_html(file_get_contents('http://www.google.com'));
 //echo out pure html: echo htmlspecialchars($html);
+include "getGuild.php";
 
-require('simple_html_dom.php');
+//require('simple_html_dom.php');
 $urls = array();
 $charAll= array();
 $c = ",";
 $t = "<tab>";
 
-array_push($urls, 'https://swgoh.gg/u/darkness39/collection/');
-array_push($urls, 'https://swgoh.gg/u/bigjohnnyk/collection/');
+$urls = getUserUrls();
+
+//array_push($urls, 'https://swgoh.gg/u/darkness39/collection/');
+//array_push($urls, 'https://swgoh.gg/u/bigjohnnyk/collection/');
 
 foreach ($urls as $url) {
 
