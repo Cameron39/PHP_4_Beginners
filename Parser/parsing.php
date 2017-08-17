@@ -18,7 +18,10 @@ $urls = getUserUrls();
 //array_push($urls, 'https://swgoh.gg/u/darkness39/collection/');
 //array_push($urls, 'https://swgoh.gg/u/bigjohnnyk/collection/');
 
-foreach ($urls as $url) {
+foreach ($urls as $user => $profile) {
+
+    $url = 'https://swgoh.gg' . $profile . 'collection/';
+    echo $url;
 
     $html = file_get_html($url);
 

@@ -7,6 +7,7 @@ require('simple_html_dom.php');
 
 //print_r($users);
 
+//switch to associate array! username -> user URL
 function getUserUrls(){
 
     $url = 'https://swgoh.gg/g/3532/the-ones-r2-destroyers/';
@@ -23,7 +24,10 @@ function getUserUrls(){
                 continue;
             }
             //echo htmlspecialchars($item->children(0)->children(0)->href) . "<br>";
-            array_push($users, 'https://swgoh.gg' . $item->children(0)->children(0)->href . 'collection/');
+            //array_push($users, 'https://swgoh.gg' . $item->children(0)->children(0)->href . 'collection/');
+            $user = $item->children(0)->children(0)->plaintext;
+            $profile = $item->children(0)->children(0)->href;
+            $users[$user] = $profile;
         }
     return $users;
 }
