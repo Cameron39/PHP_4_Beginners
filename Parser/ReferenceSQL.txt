@@ -4,3 +4,6 @@ http://localhost/phpmyadmin
 
 //Count of users with toons 3* and above per toon
 SELECT toon, count(*) FROM `toons` where valid = 'X' group by toon
+
+//cleanse toon names
+update TOONS set toon = replace(replace(replace(toon,'&quot;', ' '),'&#39;', ' '),'ÃŽ', ' ')
