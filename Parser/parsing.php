@@ -6,22 +6,71 @@
 //  $html = str_get_html(file_get_contents('http://www.google.com'));
 //echo out pure html: echo htmlspecialchars($html);
 include "getGuild.php";
+include "char.php";
 
 //require('simple_html_dom.php');
 $urls = array();
-$charAll= array();
+$charAll = array();
+$master = array();
 $c = ",";
 $t = "<tab>";
+$servername = 'localhost';
+$username = 'root';
+$password = 'droid4swgoh';
 
 $urls = getUserUrls();
 
 //array_push($urls, 'https://swgoh.gg/u/darkness39/collection/');
 //array_push($urls, 'https://swgoh.gg/u/bigjohnnyk/collection/');
+/*
+Thoghts: user -> characters[char]
+Database?
+-user | char | star | level | gear?
+-need to create Database, create table;
+*/
 
+$conn = new mysqli($servername, $username, $password);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} else {
+    echo 'DB is okay<br>';
+}
+
+$sql = "CREATE DATABASE IF NOT EXISTS SW";
+if ($conn->query($sql) === TRUE) {
+    echo "Database created successfully<br>";
+} else {
+    die("Error creating database: " . $conn->error);
+}
+
+mysqli_select_db($conn,"SW");
+
+$sql = 'CREATE TABLE IF NOT EXISTS toons (
+        id INT NOT NULL AUTO_INCREMENT,
+        PRIMARY KEY(id),
+        USER    char(100) NOT NULL,
+        TOON    char(100) NOT NULL,
+        STAR    INT,
+        LEVEL   INT,
+        GEAR    char(5))';
+if ($conn->query($sql) === TRUE) {
+    echo "Table Created<br>";
+} else {
+    die("Error creating table: " . $conn->error);
+}
+
+
+
+// ...some PHP code for database "test"...
+
+mysqli_close($conn);
+
+exit();
 foreach ($urls as $user => $profile) {
 
     $url = 'https://swgoh.gg' . $profile . 'collection/';
-    echo $url;
+    //echo $url . '<br>';
 
     $html = file_get_html($url);
 
