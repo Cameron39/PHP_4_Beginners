@@ -1,0 +1,6 @@
+For quering the database IN the phpMyAdmin interface
+
+http://localhost/phpmyadmin
+
+//Count of users with toons 3* and above per toon
+SELECT toon, count(*) FROM `toons` where valid = 'X' group by toon
