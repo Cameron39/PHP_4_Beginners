@@ -14,7 +14,9 @@
         //  $html = str_get_html(file_get_contents('http://www.google.com'));
         //echo out pure html: echo htmlspecialchars($html);
         include "getGuild.php";
-
+        
+        ini_set('max_execution_time', 300); //5 minutes.
+            
         $urls = array();
         $charAll = array();
         $master = array();

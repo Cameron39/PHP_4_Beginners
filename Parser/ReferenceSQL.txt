@@ -6,4 +6,4 @@ http://localhost/phpmyadmin
 SELECT toon, count(*) FROM `toons` where valid = 'X' group by toon
 
 //cleanse toon names
-update TOONS set toon = replace(replace(replace(toon,'&quot;', ' '),'&#39;', ' '),'ÃŽ', ' ')
+update TOONS set toon = replace(replace(replace(toon,'&quot;', ' '),'&#39;', ' '),'ÃŽ', ' I')
