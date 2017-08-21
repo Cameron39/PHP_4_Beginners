@@ -26,6 +26,8 @@
         $servername = 'localhost';
         $username = 'root';
         $password = 'droid4swgoh';
+        $count = 1;
+        $ttl_cnt=0;
 
         $urls = getUserUrls();
 
@@ -70,6 +72,8 @@
         } else {
             die("Error creating table: " . $conn->error);
         }
+        
+        $ttl_cnt = count($urls);
 
         foreach ($urls as $user => $profile) {
 
@@ -104,9 +108,10 @@
                 //echo $name . $c . $stars . $c . $level . $c . $gear . $c . $valid . "<br>";
             }
 
-            echo 'User: ' . $user . ' -> done<br>';
+            echo '(' . $count . '/'. $ttl_cnt . ') User: ' . $user . ' -> done<br>';
             ob_flush();
             flush();
+            $count++;
             //sleep(1);
             //echo "<br><br>";
         }
