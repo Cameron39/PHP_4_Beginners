@@ -62,3 +62,6 @@ https://dev.mysql.com/doc/refman/5.7/en/load-data.html
 ,'Ugnaught'
 ,'URoRRuR R R'
 ,'Zam Wesell'
+=======
+update TOONS set toon = replace(replace(replace(toon,'&quot;', ' '),'&#39;', ' '),'ÃŽ', 'I')
+
