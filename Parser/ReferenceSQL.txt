@@ -11,6 +11,30 @@ update TOONS set toon = replace(replace(replace(toon,'&quot;', ' '),'&#39;', ' '
 //Load via file suggestion! 
 https://dev.mysql.com/doc/refman/5.7/en/load-data.html
 
+//Delete duplicate user
+delete from toons where user = 'Menkab'
+
+//Distinct toon table
+create table distincttoon as select distinct toon from toons
+
+//7 star character view
+create or replace view sw.7star(toon, cnt) as select toon, count(*) from toons where star = 7 group by toon
+
+//6 star character view
+create or replace view sw.6star(toon, cnt) as select toon, count(*) from toons where star = 6 group by toon
+
+//5 star character view
+create or replace view sw.5star(toon, cnt) as select toon, count(*) from toons where star = 5 group by toon
+
+//4 star character view
+create or replace view sw.4star(toon, cnt) as select toon, count(*) from toons where star = 4 group by toon
+
+//TB ready view
+create or replace view sw.TBready(toon, cnt) as select toon, count(*) from toons where valid = 'X' group by toon
+
+/TB and star view
+SELECT d.toon, COALESCE(tbready.cnt,0) TBReady, COALESCE(4star.cnt,0) 4star, COALESCE(5star.cnt,0) 5star, COALESCE(6star.cnt, 0) 6star, COALESCE(7star.cnt, 0) 7star from distincttoon d left join sw.tbready on tbready.toon = d.toon left join sw.4star on 4star.toon = d.toon left join sw.5star on 5star.toon = d.toon left join sw.6star on 6star.toon = d.toon left join sw.7star on 7star.toon = d.toon order by d.toon
+
 //Suggested Toons
 'Aayla Secura','Asajj Ventress','B2 Super Battle Droid','Barriss Offee','Baze Malbus','Bodhi Rook','CC-2224  Cody','Chirrut Imwe','Coruscant Underworld Police','CT-21-0408  Echo','Death Trooper','Dengar','Eeth Koth','Finn','First Order Officer','First Order Stormtrooper','First Order TIE Pilot','Gamorrean Guard','Gar Saxon','General Grievous','General Kenobi','Geonosian Soldier','Geonosian Spy','Grand Admiral Thrawn','Greedo','Hoth Rebel Soldier','IG-100 MagnaGuard','Imperial Super Commando','Jawa Engineer','Kit Fisto','Lobot','Magmatrooper','Mob Enforcer','Nightsister Acolyte','Nightsister Initiate','Nute Gunray','Pao','Poggle the Lesser','Resistance Pilot','Resistance Trooper','Savage Opress','Scarif Rebel Pathfinder','Shoretrooper','Tusken Raider','Tusken Shaman','Ugnaught','URoRRuR R R','Zam Wesell'
 
