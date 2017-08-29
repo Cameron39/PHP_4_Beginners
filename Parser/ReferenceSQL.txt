@@ -14,8 +14,25 @@ https://dev.mysql.com/doc/refman/5.7/en/load-data.html
 //Delete duplicate user
 delete from toons where user = 'Menkab'
 
-//Distinct toon table
+//Table toon name cleanse
+update TOONS set toon = replace(replace(replace(toon,'&quot;', ' '),'&#39;', ' '),'ÃŽ', 'I')
+
+//Distinct toon table, do after name cleanse!
 create table distincttoon as select distinct toon from toons
+
+//TB and Star WORKING query!
+select distinct dt.toon 'Character', COALESCE(tb.cnt,0)'TB Ready', 
+COALESCE(s7.cnt,0) '7 Star', COALESCE(S6.cnt,0) '6 Star', COALESCE(s5.cnt,0) '5 Star', COALESCE(s4.cnt,0) '4 Star', COALESCE(s3.cnt,0) '3 Star', COALESCE(s2.cnt,0) '2 Star', COALESCE(s1.cnt,0) '1 Star'
+from distincttoon dt
+left join (select toon, count(toon) cnt from toons where valid = 'X' group by toon) as tb on tb.toon = dt.toon
+left join (select toon, count(toon) cnt from toons where star = '7' group by toon) as s7 on s7.toon = dt.toon
+left join (select toon, count(toon) cnt from toons where star = '6' group by toon) as s6 on s6.toon = dt.toon
+left join (select toon, count(toon) cnt from toons where star = '5' group by toon) as s5 on s5.toon = dt.toon
+left join (select toon, count(toon) cnt from toons where star = '4' group by toon) as s4 on s4.toon = dt.toon
+left join (select toon, count(toon) cnt from toons where star = '3' group by toon) as s3 on s3.toon = dt.toon
+left join (select toon, count(toon) cnt from toons where star = '2' group by toon) as s2 on s2.toon = dt.toon
+left join (select toon, count(toon) cnt from toons where star = '1' group by toon) as s1 on s1.toon = dt.toon
+group by dt.toon
 
 //7 star character view
 create or replace view sw.7star(toon, cnt) as select toon, count(*) from toons where star = 7 group by toon
@@ -87,5 +104,5 @@ SELECT d.toon, COALESCE(tbready.cnt,0) TBReady, COALESCE(4star.cnt,0) 4star, COA
 ,'URoRRuR R R'
 ,'Zam Wesell'
 =======
-update TOONS set toon = replace(replace(replace(toon,'&quot;', ' '),'&#39;', ' '),'ÃŽ', 'I')
+
 
