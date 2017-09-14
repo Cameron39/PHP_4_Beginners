@@ -21,8 +21,10 @@
         $charAll = array();
         $master = array();
         $c = ",";
-        $t = "<tab>";
+        $t = "&emsp;";
         $q = "','";
+        $d = '<td>';
+        $e = '</td>';
         $servername = 'localhost';
         $username = 'root';
         $password = 'droid4swgoh';
@@ -33,7 +35,7 @@
 
         //$urls['darkness39'] = '/u/darkness39/'; //For testing 
         //$urls['bigjohnnyk'] = '/u/bigjohnnyk/';
-
+        /*    
         $conn = new mysqli($servername, $username, $password);
 
         if ($conn->connect_error) {
@@ -72,9 +74,16 @@
         } else {
             die("Error creating table: " . $conn->error);
         }
-        
+        */
         $ttl_cnt = count($urls);
-
+        echo '<table>';
+        echo '<tr>';
+        echo '<th>User</th>';
+        echo '<th>Name</th>';
+        echo '<th>Stars</th>';
+        echo '<th>Level</th>';
+        echo '<th>Gear</th>';
+        echo '<tr>';
         foreach ($urls as $user => $profile) {
 
             $url = 'https://swgoh.gg' . $profile . 'collection/';
@@ -89,12 +98,13 @@
                 $level = getLevel($item->children(0)->children(0)->children(0));
                 $gear = getGear($item->children(0)->children(0)->children(0));//->children(10));
                 $stars = getStars($item->children(0)->children(0)->children(0));
+                /*
                 if ($stars > 2) {
                     $valid = 'X';
                 } else {
                     $valid = 'N';
                 }
-
+                
                 $sql = "INSERT INTO TOONS (USER, TOON, STAR, VALID, LEVEL, GEAR) " .
                     "VALUES ('" . $user . $q . $name . $q . $stars . $q . $valid . 
                     $q . $level . $q . $gear . "')";
@@ -105,16 +115,27 @@
                 } else {
                     die ('Error Inserting: ' . $conn->error . '<br>SQL: ' . $sql);
                 }
-                //echo $name . $c . $stars . $c . $level . $c . $gear . $c . $valid . "<br>";
+                */
+                //echo $name . $t . $stars . $t . $level . $t . $gear . $t . $valid . "<br>";
+                echo '<tr>';
+                echo $d . $user . $e;
+                echo $d . $name . $e;
+                echo $d . $stars . $e;
+                echo $d . $level . $e;
+                echo $d . $gear . $e;
+                echo '</tr>';
+                
             }
 
-            echo '(' . $count . '/'. $ttl_cnt . ') User: ' . $user . ' -> done<br>';
+            //echo '(' . $count . '/'. $ttl_cnt . ') User: ' . $user . ' -> done<br>';
             ob_flush();
             flush();
             $count++;
             //sleep(1);
             //echo "<br><br>";
         }
+        echo '</table>';
+        /*
         $sql = "update TOONS set toon = replace(replace(replace(toon,'&quot;', ' '),'&#39;', ' '),'ÃŽ', 'I')";
 
         if ($conn->query($sql) === TRUE) {
@@ -122,11 +143,11 @@
         } else {
             echo '<br> Toon name cleanse failed, run manually';
         }
-    
+        */
 
-        echo '<br>DONE!';
+        //echo '<br>DONE!';
 
-        mysqli_close($conn);
+        //mysqli_close($conn);
 
         function getName($html){
 
@@ -144,7 +165,7 @@
             //echo htmlspecialchars($html);
             //$name = str_replace('&quot;',' ', $name); //seems to slow it down?
             //$name = str_replace('&#39;',' ', $name);
-            return $tname;
+            return cleanNames($tname);
         }
 
         function getLevel($html){
@@ -223,6 +244,17 @@
             if (strlen((string)$html->children(8)) == 30) {$stars++;}
 
             return $stars;
+        }
+        
+        function cleanNames($name){
+            $badChar1 = array(chr(145), chr(146), chr(147), chr(148),'&quot;');
+            $badChar2 = array('&#39;');
+            if ($name == 'Chirrut Îmwe') {
+                $name = 'Chirrut Imwe';
+            } 
+            $name = str_replace($badChar1,'',$name);
+            $name = str_replace($badChar2,' ',$name);
+            return $name;
         }
 
         ?>
