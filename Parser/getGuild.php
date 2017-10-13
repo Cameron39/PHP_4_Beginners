@@ -10,7 +10,7 @@ require('simple_html_dom.php');
 //switch to associate array! username -> user URL
 function getUserUrls(){
 
-    $url = 'https://swgoh.gg/g/3532/the-ones-r2-destroyers/';
+    $url = 'https://swgoh.gg/g/3532/r2-destroyers/';
 
     $html = file_get_html($url);
 
