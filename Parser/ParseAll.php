@@ -7,7 +7,7 @@
     <body>
     <?php
         include "getGuild.php";
-        include "parsing.php";
+        include "charsparser.php";
         include "shipsparser.php";
         
         echo '<table>';
