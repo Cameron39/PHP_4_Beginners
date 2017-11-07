@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Parser</title>
+    <title>Char Parser</title>
 </head>
 
 <body>
