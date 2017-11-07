@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Parser</title>
-    </head>
-    <body>
 
-        <?php
+<head>
+    <meta charset="UTF-8">
+    <title>Parser</title>
+</head>
+
+<body>
+
+    <?php
         //NOTE: needed to change $offset = -1 to %offset = 0
         //  In simple_html_dom.php line 70, due to PHP "support for negative offsets)
         //  https://github.com/sunra/php-simple-html-dom-parser/issues/41
         //Alternative approach:
         //  $html = str_get_html(file_get_contents('http://www.google.com'));
         //echo out pure html: echo htmlspecialchars($html);
-        include "getGuild.php";
+        //include "getGuild.php";
         
+        function getCharData($urls) {
         ini_set('max_execution_time', 300); //5 minutes.
             
-        $urls = array();
+        //$urls = array();
         $charAll = array();
         $master = array();
         $c = ",";
@@ -25,13 +28,13 @@
         $q = "','";
         $d = '<td>';
         $e = '</td>';
-        $servername = 'localhost';
-        $username = 'root';
-        $password = 'droid4swgoh';
+        //$servername = 'localhost';
+        //$username = 'root';
+        //$password = 'droid4swgoh';
         $count = 1;
         $ttl_cnt=0;
 
-        $urls = getUserUrls();
+        //$urls = getUserUrls();
 
         //$urls['darkness39'] = '/u/darkness39/'; //For testing 
         //$urls['bigjohnnyk'] = '/u/bigjohnnyk/';
@@ -76,14 +79,6 @@
         }
         */
         $ttl_cnt = count($urls);
-        echo '<table>';
-        echo '<tr>';
-        echo '<th>User</th>';
-        echo '<th>Name</th>';
-        echo '<th>Stars</th>';
-        echo '<th>Level</th>';
-        echo '<th>Gear</th>';
-        echo '<tr>';
         foreach ($urls as $user => $profile) {
 
             $url = 'https://swgoh.gg' . $profile . 'collection/';
@@ -92,8 +87,11 @@
             $html = file_get_html($url);
 
             $items = $html->find('div[class=col-xs-6 col-sm-3 col-md-3 col-lg-2]');
-
+            //echo htmlspecialchars($html);
+            //echo '<br><br>';
             foreach ($items as $item){
+                //echo htmlspecialchars($item);
+                //echo '<br><br><br>';
                 $name = getName($item->children(0)->children(0)->children(0));//->children(0));
                 $level = getLevel($item->children(0)->children(0)->children(0));
                 $gear = getGear($item->children(0)->children(0)->children(0));//->children(10));
@@ -134,7 +132,6 @@
             //sleep(1);
             //echo "<br><br>";
         }
-        echo '</table>';
         /*
         $sql = "update TOONS set toon = replace(replace(replace(toon,'&quot;', ' '),'&#39;', ' '),'ÃŽ', 'I')";
 
@@ -148,7 +145,7 @@
         //echo '<br>DONE!';
 
         //mysqli_close($conn);
-
+        }
         function getName($html){
 
             //echo htmlspecialchars($html) . "<br>";
@@ -259,5 +256,6 @@
 
         ?>
 
-    </body>
+</body>
+
 </html>
