@@ -7,8 +7,9 @@
     <body>
     <?php
         include "getGuild.php";
-        include "charsparser.php";
-        include "shipsparser.php";
+        //include "charsparser.php";
+        //include "shipsparser.php";
+        include "ParseAll.php";
         
         echo '<table>';
         echo '<tr>';
@@ -17,12 +18,12 @@
         echo '<th>Stars</th>';
         echo '<th>Level</th>';
         echo '<th>Gear</th>';
-        echo '<tr>';
         
         $urls = getUserURLS();
         
-        getShipData($urls);
-        getCharData($urls);
+        //getShipData($urls);
+        //getCharData($urls);
+        getAllData($urls);
         
         echo '</table>'
         
